@@ -23,12 +23,14 @@ class QuestionPage extends Component {
     render(){
         if (this.props.notFound === true){
             return (
-                <p>Question not found.</p>
+                <div className='panel'>
+                    <h3>Question not found.</h3>
+                </div>
             )
         }
 
         const { 
-            author,
+            avatarURL, author,
             optionOne, votedOne, percentOne,
             optionTwo, votedTwo, percentTwo,
             votedTotal,
@@ -37,16 +39,18 @@ class QuestionPage extends Component {
 
         if (answer === null || answer === undefined) {
             return (
-                <div>
-                    <h3>{author} asked: </h3>
-                    <div>Would you Rather?</div>
-                    <div>
-                        <button onClick={this.answerOption1}>
+                <div className='panel'>
+                    <img src={avatarURL}
+                        alt={`Avatar of ${author}`}
+                        className='avatar'
+                    />
+                    <div className='question-info'>
+                        <h3>{author} asked: </h3>
+                        <h4>Would you Rather?</h4>
+                        <button className='btn' onClick={this.answerOption1}>
                             {optionOne}
                         </button>
-                    </div>
-                    <div>
-                        <button onClick={this.answerOption2}>
+                        <button className='btn' onClick={this.answerOption2}>
                             {optionTwo}
                         </button>
                     </div>
@@ -55,20 +59,26 @@ class QuestionPage extends Component {
         }
 
         return (
-            <div>
-                <h3>{author} asked: </h3>
-                <div>Would you Rather?</div>
+            <div className='panel'>
+                <img src={avatarURL}
+                    alt={`Avatar of ${author}`}
+                    className='avatar'
+                />
+                <div className='question-info'>
+                    <h3>{author} asked: </h3>
+                    <h4>Would you Rather?</h4> 
 
-                <div>
-                    {answer === 'optionOne' && <span>You answered:</span>}
-                    <div>{optionOne}</div>
-                    <div>{votedOne} of {votedTotal} ({percentOne}%)</div>
-                </div>
+                    <p>
+                        {answer === 'optionOne' && <b>You answered:<br/></b>}
+                        {optionOne} <br/>
+                        <b>{votedOne} of {votedTotal} ({percentOne}%)</b>
+                    </p>
 
-                <div>
-                    {answer === 'optionTwo' && <span>You answered:</span>}
-                    <div>{optionTwo}</div>
-                    <div>{votedTwo} of {votedTotal} ({percentTwo}%)</div>
+                    <p>
+                        {answer === 'optionTwo' && <b>You answered:<br/></b>}
+                        {optionTwo} <br/>
+                        <b>{votedTwo} of {votedTotal} ({percentTwo}%)</b>
+                    </p>
                 </div>
             </div>
         )
@@ -83,6 +93,7 @@ function mapStateToProps({users, questions, authedUser}, props) {
 
     if (question) {
         const author = users[question.author].name
+        const avatarURL = users[question.author].avatarURL
         const optionOne = question.optionOne.text
         const votedOne = question.optionOne.votes.length
         const optionTwo = question.optionTwo.text
@@ -92,6 +103,7 @@ function mapStateToProps({users, questions, authedUser}, props) {
         const percentTwo = (votedTwo / votedTotal) * 100
         return {
             id,
+            avatarURL,
             author,
             optionOne,
             votedOne,

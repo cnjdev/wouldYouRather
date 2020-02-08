@@ -6,26 +6,41 @@ class Leaderboard extends Component {
         const {users} = this.props
       
         return (
-            <table>
-            <thead>
-                <tr>
-                    <th>Profile</th>
-                    <th>Name</th>
-                    <th>Questions</th>
-                    <th>Answers</th>
-                    <th>Score</th>
-                </tr>
-            </thead>   
-            <tbody>
-            {users.map((user) => (<tr>
-                <td></td>
-                <td>{user.name}</td>
-                <td>{user.questions.length}</td>
-                <td>{Object.keys(user.answers).length}</td>
-                <td>{user.questions.length + Object.keys(user.answers).length}</td>
-            </tr>))}
-            </tbody>
-            </table>
+            <div>
+                <h3 className='center'>Leader Board</h3>
+                <div className='panel'>
+                    <table>
+
+                    <thead>
+                    <tr>
+                        <th>Profile</th>
+                        <th>Name</th>
+                        <th>Questions</th>
+                        <th>Answers</th>
+                        <th>Score</th>
+                    </tr>
+                    </thead>   
+
+                    <tbody>
+                    {users.map((user) => (
+                    <tr key={user.id}>
+                        <td>        
+                            <img src={user.avatarURL}
+                                alt={`Avatar of ${user.name}`}
+                                className='avatar'
+                            />
+                        </td>
+                        <td>{user.name}</td>
+                        <td>{user.questions.length}</td>
+                        <td>{Object.keys(user.answers).length}</td>
+                        <td>{user.questions.length + Object.keys(user.answers).length}</td>
+                    </tr>
+                    ))}
+                    </tbody>
+
+                    </table>
+                </div>
+            </div>
         )
     }
 }

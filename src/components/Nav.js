@@ -8,32 +8,23 @@ class Nav extends Component {
 
     return (
       <nav className='nav'>
-        <ul>
-          <li>
-            <NavLink to='/' exact activeClassName='active'>
-              Home
+        <NavLink to='/' exact activeClassName='active'>
+          Home
+        </NavLink>
+        <NavLink to='/add' activeClassName='active'>
+          New Question
+        </NavLink>
+        <NavLink to='/leaderboard' activeClassName='active'>
+          Leaderboard
+        </NavLink>
+        
+        {user != null &&  
+          <nav className='nav-right'>
+            <NavLink to='/logout'>
+              Log out ({user.name})
             </NavLink>
-          </li>
-          <li>
-            <NavLink to='/add' activeClassName='active'>
-              New Question
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to='/leaderboard' activeClassName='active'>
-              Leaderboard
-            </NavLink>
-          </li>
-
-          {user != null &&  
-            <li>
-              Hello, {user.name} <br/>
-              <NavLink to='/logout'>
-                Log out
-              </NavLink>
-            </li>
-          }
-        </ul>
+          </nav>
+        }
       </nav>
     )
   }

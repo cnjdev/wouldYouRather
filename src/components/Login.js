@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect, withRouter } from 'react-router-dom'
 import { handleLogin } from '../actions/authedUser'
-import LoadingBar from "react-redux-loading"
 
 class Login extends Component {
 
@@ -29,13 +28,15 @@ class Login extends Component {
         const { users } = this.props
         return (
             <div>
-                <h3>Login</h3>
-                <select value={this.state.user} onChange={this.loginUser.bind(this)}>
-                    <option value='none'>Select a user</option>
-                    {Object.keys(users).map(userId => (
-                        <option key={userId} value={userId}>{users[userId].name}</option>
-                    ))}
-                </select>
+                <h3 className='center'>Login</h3>
+                <div className='panel'>
+                    <select value={this.state.user} onChange={this.loginUser.bind(this)}>
+                        <option value='none'>Select a user</option>
+                        {Object.keys(users).map(userId => (
+                            <option key={userId} value={userId}>{users[userId].name}</option>
+                        ))}
+                    </select>
+                </div>
             </div>
         )
     }

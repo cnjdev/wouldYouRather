@@ -52,34 +52,36 @@ class NewQuestion extends Component {
       return (
         <div>
           <h3 className='center'>Would you Rather?</h3>
-          <form className='new-tweet' onSubmit={this.handleSubmit}>
-            <textarea
-              placeholder="Enter option 1"
-              value={optionOne}
-              onChange={this.handleOpt1Change}
-              className='textarea'
-              maxLength={280}
-            />
+          <div className='panel'>
+            <form className='new-question' onSubmit={this.handleSubmit}>
+              <textarea
+                placeholder="Enter option 1"
+                value={optionOne}
+                onChange={this.handleOpt1Change}
+                className='textarea'
+                maxLength={280}
+              />
 
-            <div>
-            or?
-            </div>
+              <div>
+              or?
+              </div>
 
-            <textarea
-              placeholder="Enter option 2"
-              value={optionTwo}
-              onChange={this.handleOpt2Change}
-              className='textarea'
-              maxLength={280}
-            />
+              <textarea
+                placeholder="Enter option 2"
+                value={optionTwo}
+                onChange={this.handleOpt2Change}
+                className='textarea'
+                maxLength={280}
+              />
 
-            <button
-              className='btn'
-              type='submit'
-              disabled={optionOne === '' || optionTwo === ''}>
-                Submit
-            </button>
-          </form>
+              <button
+                className='btn'
+                type='submit'
+                disabled={optionOne === '' || optionTwo === ''}>
+                  Submit
+              </button>
+            </form>
+          </div>
         </div>
       )
     }
